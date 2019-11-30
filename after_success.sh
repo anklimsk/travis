@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Move to APP
-if [ -d ../cakephp/app ]; then
-	cd ../cakephp/app
+# Move to Plugin
+if [ -d "../cakephp/app/Plugin/$PLUGIN_NAME" ]; then
+	cd ../cakephp/app/Plugin/$PLUGIN_NAME
 fi
 
 if [ "$CODECOVERAGE" == '1' ]; then
