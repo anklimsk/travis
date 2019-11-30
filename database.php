@@ -4,8 +4,9 @@ class DATABASE_CONFIG {
 	protected $_identities = array(
 		'mysql' => array(
 			'datasource' => 'Database/Mysql',
-			'host' => '0.0.0.0',
-			'login' => 'travis'
+			'host' => '127.0.0.1',
+			'login' => 'travis',
+			'encoding' => 'utf8'
 		),
 		'pgsql' => array(
 			'datasource' => 'Database/Postgres',
