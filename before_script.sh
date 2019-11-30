@@ -73,9 +73,19 @@ for dep in $REQUIRE; do
     composer require --no-interaction --prefer-source $dep;
 done
 
+if [ -z "$PHPUNIT" ]; then
+	PHPUNIT="5.7.19"
+fi
+
 if [ "$PHPCS" != '1' ]; then
-	composer global require 'phpunit/phpunit=3.7.38'
-	ln -s ~/.composer/vendor/phpunit/phpunit/PHPUnit ./Vendor/PHPUnit
+	cd ..
+	composer require "phpunit/phpunit=$PHPUNIT"
+  	echo "require_once ROOT . '/vendors/autoload.php';" >> app/Config/bootstrap.php
+	cd -
+fi
+
+if [[ ${TRAVIS_PHP_VERSION:0:3} =~ ^7\.[23]$ ]] ; then 
+	pear config-set preferred_state snapshot && yes "" | pecl install mcrypt 
 fi
 
 phpenv rehash
